@@ -2,30 +2,26 @@
 <html>
 
 <head>
-    <title>Static Web Page</title>
+    <meta charset=utf-8 />
+    <title>videojs-contrib-hls embed</title>
+    <link href="video-js.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <div style="width:1300px; margin:0 auto;">
-        <video id="video" width="1280" height="720" controls></video>
-    </div>
-    <script>
-        var url = 'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8';
+        <h1>Test Video Player</h1>
 
-        if (Hls.isSupported()) {
-            var video = document.getElementById('video');
-            var hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-        }
-        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = url;
-            video.addEventListener('canplay', function () {
-                video.play();
-            });
-        }
+        <video-js id="videoTag" class="vjs-default-skin" controls preload="auto" width="1280" height="720">
+            <source src="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"
+                type="application/x-mpegURL">
+        </video-js>
+    </div>
+
+    <script src="video.js"></script>
+    <script src="videojs-http-streaming.min.js"></script>
+
+    <script>
+        var player = videojs('videoTag');
     </script>
 
 </body>
